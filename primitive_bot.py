@@ -20,7 +20,7 @@ def search(cur, update, table, column):
     cur.execute("SELECT * "
                 "FROM " + table + " "
                 "WHERE " + column + " LIKE '%" + str(update.message.text) + "%'")
-    return str(cur.fetchone()).split(",")[1].split("'")[1]
+    return str(cur.fetchone()).split("'")[3]
 
 updater = Updater(token='499411892:AAEUsC0XtVTP-TEn3zFW7yovccDvC4LmJg8')  # тут токен, который выдал вам Ботский Отец!
 
