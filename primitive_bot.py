@@ -8,13 +8,13 @@ import sqlite3
 # C:\Users\user\Documents\DB_001
 def start(bot, update):
     # подробнее об объекте update: https://core.telegram.org/bots/api#update
-    bot.sendMessage(chat_id=update.message.chat_id, text="Введите вопрос")
     print(update.message.chat.username)
     con = sqlite3.connect('db_001.db')
     cur = con.cursor()
     results = search(cur, update, "About_military", "Question")
     bot.sendMessage(chat_id=update.message.chat_id, text=str(results))
     con.close()
+    bot.sendMessage(chat_id=update.message.chat_id, text="Введите вопрос")
 
 def search(cur, update, table, column):
     cur.execute("SELECT * "
