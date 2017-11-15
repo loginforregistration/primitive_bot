@@ -32,8 +32,7 @@ def bot_message(bot, update, question):
     bot.sendMessage(chat_id=update.message.chat_id, text=question)
 
 def fetch1(cur):
-    return str(cur.fetchone())
-    # str(cur.fetchone()).split("'")[column_index]
+    return str(cur.fetchone()).split("'")[column_index]
 
 updater = Updater(token='499411892:AAEUsC0XtVTP-TEn3zFW7yovccDvC4LmJg8')  # тут токен, который выдал вам Ботский Отец!
 
