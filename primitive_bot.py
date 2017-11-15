@@ -7,12 +7,17 @@ import sqlite3
 import hashlib
 from operator import attrgetter
 
-# C:\Users\user\Documents\DB_001
+DB_FAQ_KAI = "db_001.db"
+
+needed_column = 2
+
+col_indx = (needed_column*2)-1
+
+
 def start(bot, update):
     # подробнее об объекте update: https://core.telegram.org/bots/api#update
-    bot.sendMessage(chat_id=update.message.chat_id, text="Введите вопрос")
     print(update.message.chat.username)
-    con = sqlite3.connect('db_001.db')
+    con = sqlite3.connect(DB_FAQ_KAI)
     cur = con.cursor()
     results = search(cur, update, "About_military", "Question")
     sort=sorted(results,key= lambda k: k['matchedCount'])[-3:]
@@ -58,6 +63,7 @@ def search(cur, update, table, column):
                                 
 
 
+
     #todo resOne= resArray.split(",")[1].split("'")[1]
     #todo count maches
 
@@ -65,7 +71,7 @@ def search(cur, update, table, column):
 
 
 
-updater = Updater(token='346220095:AAEMbDFN8y8ImM2BEfGKlbYejnav_9K_vaE')  # тут токен, который выдал вам Ботский Отец!
+updater = Updater(token='461661232:AAExDNSsp3zQfL3oAovRhi3TVQKZWEJr7aI')  # тут токен, который выдал вам Ботский Отец!
 
 # start_handler = CommandHandler('', start)  # этот обработчик реагирует
                                                 # только на команду /start
