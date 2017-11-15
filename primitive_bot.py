@@ -9,10 +9,10 @@ DB_FAQ_KAI = "db_001.db"
 
 needed_column = 2
 
-column_index = (needed_column*2)-1
+col_indx = (needed_column*2)-1
 
 # C:\Users\user\Documents\DB_001
-def start(bot, update):
+def start(bot, update, col_indx):
     # подробнее об объекте update: https://core.telegram.org/bots/api#update
     print(update.message.chat.username)
     con = sqlite3.connect(DB_FAQ_KAI)
@@ -22,17 +22,17 @@ def start(bot, update):
     con.close()
     bot_message(bot, update, "Введите вопрос")
 
-def search(cur, update, column_reply, table, column):
+def search(cur, update, column_reply, table, column, col_indx):
     cur.execute("SELECT " + column_reply + " "
                 "FROM " + table + " "
                 "WHERE " + column + " LIKE '%" + str(update.message.text) + "%'")
-    return fetch1(cur)
+    return fetch1(cur, col_indx)
 
 def bot_message(bot, update, question):
     bot.sendMessage(chat_id=update.message.chat_id, text=question)
 
-def fetch1(cur):
-    return str(cur.fetchone()).split("'")[column_index]
+def fetch1(cur, col_indx):
+    return str(cur.fetchone()).split("'")[col_indx]
 
 updater = Updater(token='499411892:AAEUsC0XtVTP-TEn3zFW7yovccDvC4LmJg8')  # тут токен, который выдал вам Ботский Отец!
 
