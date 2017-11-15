@@ -70,7 +70,7 @@ def search(cur, update, table, column):
 
 
 
-
+# @kai7_bot
 updater = Updater(token='461661232:AAExDNSsp3zQfL3oAovRhi3TVQKZWEJr7aI')  # тут токен, который выдал вам Ботский Отец!
 
 # start_handler = CommandHandler('', start)  # этот обработчик реагирует
